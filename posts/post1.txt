@@ -1,0 +1,2 @@
+Title: My First Post
+Content: This is the content of my first post.
