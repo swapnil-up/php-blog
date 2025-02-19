@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  phpblog:
+    build: .
+    ports:
+      - "80:80"
+    environment:
+      DB_HOST: my-php-blog.r2.db.render.com
+      DB_NAME: php_blog
+      DB_USER: admin
+      DB_PASS: secure_password
