@@ -24,6 +24,22 @@ switch ($route){
             echo "Post id not passed";
         }
         break;
+
+    case '/add_comment':
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $postId = $_POST['post_id'];
+            $author = trim($_POST['author']);
+            $content = trim($_POST['content']);
+
+            if (!empty($author) && !empty($content)) {
+                $post_model->addComment($postId, $author, $content);
+                header("Location: ?route=/post&id=$postId");
+                exit;
+            } else {
+                echo "All fields are required.";
+            }
+        }
+        break;
     default:
         echo "404 not found";
     }

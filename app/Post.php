@@ -23,4 +23,15 @@ class Post{
         $stmt= $this->pdo->prepare("INSERT INTO posts (title, content) VALUES (? ,?)");
         $stmt->execute([$title, $content]);
     }
+
+    public function getComments($postId){
+        $stmt= Database::connect()->prepare("SELECT * FROM comments WHERE post_id=? ORDER BY created_at DESC");
+        $stmt->execute([$postId]);
+        return $stmt->fetchAll();
+    }
+
+    public function addComment($postId, $author, $content){
+        $stmt = Database::connect()->prepare("INSERT INTO comments (post_id, author, content) VALUES (?, ?, ?)");
+        $stmt->execute([$postId, $author, $content]);
+    }
 }
